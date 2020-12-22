@@ -17,13 +17,16 @@ script:
   - docker --version # print the version for logging
   - docker build -t udagram-proxy ./project/udagram-proxy
   - docker tag udagram-proxy pkowalic/udagram-proxy:latest
-  - docker build -t udagram-api-mono ./project/udagram-api
-  - docker tag udagram-api-mono pkowalic/udagram-api-mono:latest
+  - docker build -t udagram-api-user ./project/udagram-api-user
+  - docker tag udagram-api-user pkowalic/udagram-api-user:latest
+  - docker build -t udagram-api-feed ./project/udagram-api-feed
+  - docker tag udagram-api-feed pkowalic/udagram-api-feed:latest
   - docker build -t udagram-front ./project/udagram-frontend
   - docker tag udagram-front pkowalic/udagram-front:latest
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push pkowalic/udagram-proxy
-  - docker push pkowalic/udagram-api-mono
+  - docker push pkowalic/udagram-api-user
+  - docker push pkowalic/udagram-api-feed
   - docker push pkowalic/udagram-front
