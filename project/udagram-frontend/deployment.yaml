@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-front
+  labels:
+    service: udagram-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udagram-front
+  template:
+    metadata:
+      labels:
+        app: udagram-front
+    spec:
+      containers:
+      - name: udagram-front
+        image: pkowalic/udagram-front
+        resources:
+          requests:
+            memory: "400Mi"
+            cpu: "250m"
+          limits:
+            memory: "400Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80
