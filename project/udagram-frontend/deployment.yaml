@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: udagram-front
+        service: udagram-front
     spec:
       containers:
       - name: udagram-front
