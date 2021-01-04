@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-front
+  labels:
+    service: udagram-front
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    service: udagram-front
