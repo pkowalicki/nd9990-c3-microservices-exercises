@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udagram-proxy
+  name: udagram-proxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: udagram-proxy
+  template:
+    metadata:
+      labels:
+        service: udagram-proxy
+    spec:
+      containers:
+      - image: pkowalic/udagram-proxy
+        name: udagram-proxy
+        imagePullPolicy: Always          
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "250m"       
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
